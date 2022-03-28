@@ -1,0 +1,79 @@
+{
+  "root": "apps/browser-extension/popup",
+  "sourceRoot": "apps/browser-extension/popup/src",
+  "projectType": "application",
+  "generators": {},
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "options": {
+        "outputPath": "dist/apps/browser-extension/popup",
+        "index": "apps/browser-extension/popup/src/popup.html",
+        "main": "apps/browser-extension/popup/src/main.tsx",
+        "polyfills": "apps/browser-extension/popup/src/polyfills.ts",
+        "tsConfig": "apps/browser-extension/popup/tsconfig.app.json",
+        "assets": [
+          "apps/browser-extension/popup/src/assets",
+          {
+            "input": "libs/browser-extension/assets",
+            "glob": "**/*",
+            "output": "assets/shared"
+          }
+        ],
+        "styles": ["apps/browser-extension/popup/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "apps/browser-extension/popup/webpack.config.js",
+        "postcssConfig": "apps/browser-extension/popup/postcss.config.js"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "extractCss": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            }
+          ]
+        }
+      },
+      "outputs": ["{options.outputPath}"]
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "browser-extension-popup:build",
+        "port": 4204
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "browser-extension-popup:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/browser-extension/popup/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "apps/browser-extension/popup/jest.config.js",
+        "passWithNoTests": true
+      },
+      "outputs": ["coverage/apps/browser-extension/popup"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["browser-extension-assets"]
+}

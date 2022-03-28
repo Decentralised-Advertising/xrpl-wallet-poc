@@ -1,0 +1,77 @@
+{
+  "root": "apps/browser-extension/home",
+  "sourceRoot": "apps/browser-extension/home/src",
+  "projectType": "application",
+  "generators": {},
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "options": {
+        "outputPath": "dist/apps/browser-extension/home",
+        "index": "apps/browser-extension/home/src/home.html",
+        "main": "apps/browser-extension/home/src/main.tsx",
+        "polyfills": "apps/browser-extension/home/src/polyfills.ts",
+        "tsConfig": "apps/browser-extension/home/tsconfig.app.json",
+        "assets": [
+          "apps/browser-extension/home/src/assets",
+          {
+            "input": "libs/browser-extension/assets",
+            "glob": "**/*",
+            "output": "assets/shared"
+          }
+        ],
+        "styles": ["apps/browser-extension/home/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "apps/browser-extension/home/webpack.config.js",
+        "postcssConfig": "apps/browser-extension/home/postcss.config.js"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "extractCss": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            }
+          ]
+        }
+      },
+      "outputs": ["{options.outputPath}"]
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "browser-extension-home:build",
+        "port": 4203
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "browser-extension-home:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/browser-extension/home/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "apps/browser-extension/home/jest.config.js",
+        "passWithNoTests": true
+      },
+      "outputs": ["coverage/apps/browser-extension/home"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["browser-extension-assets"]
+}

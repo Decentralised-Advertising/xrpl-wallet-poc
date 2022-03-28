@@ -1,0 +1,27 @@
+{
+  "name": "XRPL Wallet POC by DA",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "XRPL Wallet POC by DA.",
+  "icons": {
+    "512": "assets/shared/da-browser-extension-icon-512.png"
+  },
+  "browser_action": {
+    "default_icon": "assets/shared/da-browser-extension-icon-512.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["assets/shared/background.js"]
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "content_scripts": [
+    {
+      "js": ["assets/shared/content.js"],
+      "all_frames": true,
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "permissions": ["storage"],
+  "web_accessible_resources": ["popup.html"],
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1ShCMfLqRk4DETsqR/FiDQH96a73wX6JmXt0MyMs9z/MokhgPOhu+UtyqZjQ3Bmt3tTQUqMyJGhg/cA9RtfMW5Z+/g+EOOEtdxVZOWFyDawncmZWFLiNPOjuyr3xa/+Y+i3MQkdg0+MqPd48P9KY3+vC/X4AYCYPsIMyjIYAp7O0yy9NdZhBwK+jkrko7Ol2VhY7Hoivp/dlhJ4FkLlFTKGER1VUvjpfPVT56HFqCK3FVFHb6KrsM7DIB+l6eK8SM2LBnoEBhxgXowbV/Dz4MJ1fiw27tYXay4HJSyWKK3fm4Tzkw4UqHruHd92DaeJZT4aOLYA44+a+J3dfea8KJQIDAQAB"
+}

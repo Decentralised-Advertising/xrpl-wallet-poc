@@ -1,0 +1,8 @@
+{
+  "root": "libs/browser-extension/assets",
+  "sourceRoot": "libs/browser-extension/assets/src",
+  "projectType": "library",
+  "generators": {},
+  "targets": {},
+  "tags": []
+}

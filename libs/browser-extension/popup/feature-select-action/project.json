@@ -1,0 +1,25 @@
+{
+  "root": "libs/browser-extension/popup/feature-select-action",
+  "sourceRoot": "libs/browser-extension/popup/feature-select-action/src",
+  "projectType": "library",
+  "generators": {},
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/browser-extension/popup/feature-select-action/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/browser-extension/popup/feature-select-action/jest.config.js",
+        "passWithNoTests": true
+      },
+      "outputs": ["coverage/libs/browser-extension/popup/feature-select-action"]
+    }
+  },
+  "tags": []
+}

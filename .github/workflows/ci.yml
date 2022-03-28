@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  main:
+    name: Nx Cloud - Main Job
+    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.1
+    with:
+      parallel-commands: |
+        npx nx workspace-lint
+        npx nx format:check
+      parallel-commands-on-agents: |
+        npx nx affected --target=lint --parallel=3
+        npx nx affected --target=test --parallel=3 --ci --code-coverage
+        npx nx affected --target=e2e
+
+  agents:
+    name: Nx Cloud - Agents
+    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.1
+    with:
+      number-of-agents: 3
+
+  build_and_test_browser_extension:
+    runs-on: ubuntu-latest
+    name: Build and test the DA Browser Extension
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install node and yarn based on the volta config in our package.json
+        uses: volta-cli/action@v1
+
+      - name: Get yarn cache directory path and node version for cache key
+        id: yarn-cache-dir-path
+        run: |
+          echo "::set-output name=dir::$(yarn cache dir)"
+          echo "::set-output name=node_version::$(node --version)"
+
+      - uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ steps.yarn-cache-dir-path.outputs.node_version }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ steps.yarn-cache-dir-path.outputs.node_version }}-yarn-
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - uses: microsoft/playwright-github-action@v1
+
+      - name: Build the browser extension
+        run: npx ts-node --project=tools/tsconfig.tools.json tools/utils/build-browser-extension.ts
+
+      - name: Run the smoke tests on the unpacked extension in a real browser
+        # xvfb-run needed because we are running in "headful mode" on linux
+        run: xvfb-run --auto-servernum -- npx nx run browser-extension-smoke-tests:smoke-test
+
+      - run: mkdir -p ./tmp/browser-extension
+
+      - name: Zip the contents of ./dist/apps/browser-extension/unpacked to ./tmp/browser-extension
+        run: npx ts-node --project=tools/tsconfig.tools.json tools/utils/zip-unpacked-browser-extension.ts
+
+      - name: Store the zip file as an artifact for the run
+        uses: actions/upload-artifact@v2
+        with:
+          name: da-browser-extension.zip
+          path: ./tmp/browser-extension/unpacked.zip

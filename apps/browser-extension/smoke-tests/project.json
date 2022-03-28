@@ -1,0 +1,23 @@
+{
+  "root": "apps/browser-extension/smoke-tests",
+  "sourceRoot": "apps/browser-extension/smoke-tests/src",
+  "projectType": "application",
+  "generators": {},
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/browser-extension/smoke-tests/**/*.ts"]
+      }
+    },
+    "smoke-test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "apps/browser-extension/smoke-tests/jest.config.js",
+        "passWithNoTests": true
+      },
+      "outputs": ["coverage/apps/browser-extension/smoke-tests"]
+    }
+  },
+  "tags": []
+}

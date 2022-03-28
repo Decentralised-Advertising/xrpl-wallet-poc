@@ -1,0 +1,33 @@
+<!--
+  THIS HTML PAGE IS PURELY INTENDED FOR LOCAL DEVELOPMENT TO RENDER THE POPUP.HTML
+  IN A MORE REALISTIC WAY (USING AN IFRAME TO CONSTRAIN THE OVERALL DOCUMENT SIZE)
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>DA Browser Extension - Popup Preview</title>
+    <base href="/" />
+
+    <script src="https://unpkg.com/xrpl@2.0.0/build/xrpl-latest-min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background: #ddd;
+        display: flex;
+      }
+      iframe {
+        margin: auto;
+        margin-top: 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe
+      src="http://localhost:4204/"
+      frameborder="0"
+      width="600"
+      height="450"
+    ></iframe>
+  </body>
+</html>

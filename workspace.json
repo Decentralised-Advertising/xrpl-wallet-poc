@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "projects": {
+    "browser-extension-assets": "libs/browser-extension/assets",
+    "browser-extension-components": "libs/browser-extension/components",
+    "browser-extension-home": "apps/browser-extension/home",
+    "browser-extension-home-e2e": "apps/browser-extension/home-e2e",
+    "browser-extension-home-feature-account-creation": "libs/browser-extension/home/feature-account-creation",
+    "browser-extension-home-feature-manage-account": "libs/browser-extension/home/feature-manage-account",
+    "browser-extension-hooks": "libs/browser-extension/hooks",
+    "browser-extension-popup": "apps/browser-extension/popup",
+    "browser-extension-popup-e2e": "apps/browser-extension/popup-e2e",
+    "browser-extension-popup-feature-select-action": "libs/browser-extension/popup/feature-select-action",
+    "browser-extension-smoke-tests": "apps/browser-extension/smoke-tests",
+    "browser-extension-utils": "libs/browser-extension/utils",
+    "shared-components-button": "libs/shared/components/button",
+    "shared-components-copy-value": "libs/shared/components/copy-value",
+    "shared-components-modal-dialog": "libs/shared/components/modal-dialog",
+    "shared-components-spinner": "libs/shared/components/spinner",
+    "shared-components-table": "libs/shared/components/table",
+    "shared-components-text-field": "libs/shared/components/text-field",
+    "shared-utils": "libs/shared/utils"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "root": "libs/browser-extension/components",
+  "sourceRoot": "libs/browser-extension/components/src",
+  "projectType": "library",
+  "generators": {},
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/browser-extension/components/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/browser-extension/components/jest.config.js",
+        "passWithNoTests": true
+      },
+      "outputs": ["coverage/libs/browser-extension/components"]
+    }
+  },
+  "tags": []
+}

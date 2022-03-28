@@ -1,0 +1,64 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@xrpl-wallet-poc/browser-extension/components": [
+        "libs/browser-extension/components/src/index.ts"
+      ],
+      "@xrpl-wallet-poc/browser-extension/home/feature-account-creation": [
+        "libs/browser-extension/home/feature-account-creation/src/index.ts"
+      ],
+      "@xrpl-wallet-poc/browser-extension/home/feature-manage-account": [
+        "libs/browser-extension/home/feature-manage-account/src/index.ts"
+      ],
+      "@xrpl-wallet-poc/browser-extension/hooks": [
+        "libs/browser-extension/hooks/src/index.ts"
+      ],
+      "@xrpl-wallet-poc/browser-extension/popup/feature-select-action": [
+        "libs/browser-extension/popup/feature-select-action/src/index.ts"
+      ],
+      "@xrpl-wallet-poc/browser-extension/utils": [
+        "libs/browser-extension/utils/src/index.ts"
+      ],
+      "@xrpl-wallet-poc/shared/components/button": [
+        "libs/shared/components/button/src/index.ts"
+      ],
+      "@xrpl-wallet-poc/shared/components/copy-value": [
+        "libs/shared/components/copy-value/src/index.ts"
+      ],
+      "@xrpl-wallet-poc/shared/components/modal-dialog": [
+        "libs/shared/components/modal-dialog/src/index.ts"
+      ],
+      "@xrpl-wallet-poc/shared/components/select": [
+        "libs/shared/components/select/src/index.ts"
+      ],
+      "@xrpl-wallet-poc/shared/components/spinner": [
+        "libs/shared/components/spinner/src/index.ts"
+      ],
+      "@xrpl-wallet-poc/shared/components/table": [
+        "libs/shared/components/table/src/index.ts"
+      ],
+      "@xrpl-wallet-poc/shared/components/text-field": [
+        "libs/shared/components/text-field/src/index.ts"
+      ],
+      "@xrpl-wallet-poc/shared/hooks": ["libs/shared/hooks/src/index.ts"],
+      "@xrpl-wallet-poc/shared/utils": ["libs/shared/utils/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
